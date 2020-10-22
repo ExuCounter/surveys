@@ -170,7 +170,7 @@ const createQuestionBlock = (percents, colors, labels, count, names, questionTit
     })
 
     function sortByPercent(arr) {
-        arr.sort((a, b) => a.percents > b.percents ? 1 : -1);
+        arr.sort((a, b) => a.percents > b.percents ? -1 : 1);
     }
 
     sortByPercent(answersObjects);
