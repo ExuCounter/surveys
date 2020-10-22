@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surveys</title>
+
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- STYLES -->
+    <link rel="stylesheet" href="assets/style/style.css">
+
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,300;1,400;1,600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- MAIN -->
+    <main class='main'>
+        <div class="container">
+            <div class='d-flex survey-select__container'>
+                <span>Select surveys:</span>
+                <select name="survey-select" id="survey-select" class="form-control">
+                    <option value="no-select" selected disabled hidden>No selected</option>
+                </select>
+            </div>
+            <div class="survey-questions__container" id='survey-questions__container'>
+            </div>
+        </div>
+    </main>
+
+    <!-- SCRIPTS -->
+    <script src='https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js'></script>
+    <script src='./assets/js/script.js' type="module"></script>
+
+</body>
+
+</html>
