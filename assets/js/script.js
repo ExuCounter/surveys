@@ -114,6 +114,11 @@ const createChart = (ctx, { labels, percents, colors }) => {
             legend: {
                 display: false
             },
+            animation: {
+                onProgress: function(animation) {
+                    progress.value = animation.animationObject.currentStep / animation.animationObject.numSteps
+                }
+            },
             scales: {
                 yAxes: [{
                     ticks: {
