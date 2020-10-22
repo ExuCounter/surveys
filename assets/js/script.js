@@ -135,7 +135,7 @@ const createChart = (ctx, { labels, percents, colors }) => {
             }
         }
     }
-    const chart = new Chart(ctx, options);
+    new Chart(ctx, options);
 }
 
 const chartDimensionsOnResize = (canvas) => {
