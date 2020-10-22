@@ -139,15 +139,9 @@ const createChart = (ctx, { labels, percents, colors }) => {
 }
 
 const chartDimensionsOnResize = (canvas) => {
-    const mobileDimensions = () => {
-        if (document.documentElement.offsetWidth < 568) {
-            canvas.height = 300;
-        }
+    if (document.documentElement.offsetWidth < 568) {
+        canvas.height = 300;
     }
-    window.onresize = () => {
-        mobileDimensions()
-    }
-    mobileDimensions();
 }
 
 const createQuestionBlock = (percents, colors, labels, count, names, questionTitle, questionNumber) => {
@@ -159,6 +153,7 @@ const createQuestionBlock = (percents, colors, labels, count, names, questionTit
     const surveyChartCanvasCtx = surveyChartCanvas.getContext('2d');
     surveyQuestionBlock.classList.add('survey-question__block');
     surveyChartCanvas.classList.add('survey-chart');
+    surveyChartCanvas.classList.add(`survey-chart-${questionNumber}`);
 
     chartDimensionsOnResize(surveyChartCanvas);
     createChart(surveyChartCanvasCtx, { labels, percents, colors });
