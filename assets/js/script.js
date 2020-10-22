@@ -11,8 +11,8 @@ const fillSurveySelect = () => {
         results.map(survey => {
             const { title } = survey;
             surveySelect.insertAdjacentHTML('beforeend', `
-                <option value='${title.toLowerCase()}'>${title}</option>
-            `)
+                    <option value='${title.toLowerCase()}'>${title}</option>
+                `)
             return title;
         })
     }
@@ -53,21 +53,13 @@ const totalResponsesHTML = `
     </div>
 `;
 
-const totalRespondentsHTML = `
-    <div class="survey-answers__total-respondents">
-        <span class='survey-answers__total-respondents__span'>
-            Total respondents: <span>(placeholder)</span>
-        </span>
-    </div>
-`;
-
 const surveyAnswersHeading = `
     <div class="survey-answers__heading">
-        <div class='survey-answer__heading-percents'>
-            %
-        </div>
         <div class='survey-answer__heading-choices'>
             Responses
+        </div>
+        <div class='survey-answer__heading-percents'>
+            %
         </div>
     </div>
 `;
@@ -87,11 +79,11 @@ const surveyQuestionNumber = (number) => {
 const surveyAnswersRow = (label, name, percent) => {
     return `
     <div class='survey-answers__row'>
-            <div class="survey-answers__row-percents">
-                <span>${percent}</span>
-            </div>
             <div class="survey-answers__row-choices">
                 <b>(${label})</b> ${name}
+            </div>
+            <div class="survey-answers__row-percents">
+                <span>${percent}</span>
             </div>
         </div>
     `;
@@ -131,7 +123,10 @@ const createChart = (ctx, { labels, percents, colors }) => {
                     ticks: {
                         callback: function(value) {
                             return '(' + value + ')'
-                        }
+                        },
+                        fontSize: 16,
+                        fontStyle: 'bold',
+                        fontColor: '#3d4247'
                     }
                 }]
             }
@@ -165,8 +160,24 @@ const createQuestionBlock = (percents, colors, labels, count, names, questionTit
     const surveyAnswersContainer = document.createElement('div');
     surveyAnswersContainer.classList.add('survey-answers');
     surveyAnswersContainer.insertAdjacentHTML('afterbegin', surveyAnswersHeading);
-    names.forEach((name, index) => {
-        let row = surveyAnswersRow(labels[index], names[index], percents[index]);
+
+    const answersObjects = names.map((name, index) => {
+        return {
+            label: labels[index],
+            name: names[index],
+            percents: percents[index]
+        }
+    })
+
+    function sortByPercent(arr) {
+        arr.sort((a, b) => a.percents > b.percents ? 1 : -1);
+    }
+
+    sortByPercent(answersObjects);
+
+    answersObjects.forEach(answer => {
+        const { label, name, percents } = answer;
+        let row = surveyAnswersRow(label, name, percents);
         surveyAnswersContainer.insertAdjacentHTML('beforeend', row);
     })
 
@@ -174,7 +185,6 @@ const createQuestionBlock = (percents, colors, labels, count, names, questionTit
     surveyChartContainer.append(surveyChartCanvas);
     surveyQuestionBlock.append(surveyChartContainer);
     surveyQuestionBlock.append(surveyAnswersContainer);
-    surveyQuestionBlock.insertAdjacentHTML('beforeend', totalRespondentsHTML);
     surveyQuestionsContainer.append(surveyQuestionBlock);
 }
 

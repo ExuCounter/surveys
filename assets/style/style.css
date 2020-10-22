@@ -130,7 +130,7 @@ select.form-control {
     width: 20%;
     flex: 0 0 20%;
     text-align: center;
-    padding: 0.5rem 0.75rem;
+    padding: 0.5rem 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -138,14 +138,15 @@ select.form-control {
 
 .survey-answer__heading-percents {
     background-color: #e7e7e7;
-    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    border-right: solid 1px #bcbcbc;
 }
 
 .survey-answer__heading-choices,
 .survey-answers__row-choices {
     width: 80%;
     flex: 0 0 80%;
-    text-align: right;
+    text-align: left;
     padding: 0.5rem 1rem;
 }
 
@@ -155,8 +156,7 @@ select.form-control {
 
 .survey-answer__heading-choices {
     background-color: #e7e7e7;
-    border-left: solid 1px #bcbcbc;
-    border-top-right-radius: 0.5rem;
+    border-top-left-radius: 0.5rem;
 }
 
 
