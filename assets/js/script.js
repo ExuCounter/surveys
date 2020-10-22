@@ -184,3 +184,4 @@ Chart.defaults.global.tooltips = function() {
 }
 
 fillSurveySelect();
+extractQuestionsData(surveySelect[0].value);
