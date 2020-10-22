@@ -3,6 +3,7 @@ import data from '../json/data.js';
 const surveyQuestionsContainer = document.getElementById('survey-questions__container');
 const surveySelect = document.getElementById('survey-select');
 
+/* FILL SURVEY SELECT */
 const fillSurveySelect = () => {
     const { success } = data;
     if (success == 1) {
@@ -17,6 +18,7 @@ const fillSurveySelect = () => {
     }
 }
 
+/* EXTRACT QUESTIONS DATA */
 const extractQuestionsData = (value) => {
     const { results } = data;
     const currentSurvey = results.filter(survey => survey.title.toLowerCase() == value);
@@ -43,7 +45,6 @@ const extractQuestionsData = (value) => {
 }
 
 /* HTML */
-
 const totalResponsesHTML = `
     <div class="survey-answers__total-responses">
         <span class='survey-answers__total-responses__span'>
@@ -85,7 +86,7 @@ const surveyQuestionNumber = (number) => {
 
 const surveyAnswersRow = (label, name, percent) => {
     return `
-        <div class='survey-answers__row'>
+    <div class='survey-answers__row'>
             <div class="survey-answers__row-percents">
                 <span>${percent}</span>
             </div>
@@ -98,6 +99,7 @@ const surveyAnswersRow = (label, name, percent) => {
 
 /* HTML END */
 
+/* CREATE CHART */
 const createChart = (ctx, { labels, percents, colors }) => {
     const options = {
         type: 'bar',
@@ -138,12 +140,14 @@ const createChart = (ctx, { labels, percents, colors }) => {
     new Chart(ctx, options);
 }
 
-const chartDimensionsOnResize = (canvas) => {
+/* CHART DIMENSIONS MANIPULATIONS ( CONDITIONS ) */
+const chartDimensionsManipulation = (canvas) => {
     if (document.documentElement.offsetWidth < 568) {
         canvas.height = 300;
     }
 }
 
+/* CREATE INDEPENDENT QUESTION BLOCK */
 const createQuestionBlock = (percents, colors, labels, count, names, questionTitle, questionNumber) => {
     const surveyQuestionBlock = document.createElement('div');
     const surveyChartContainer = document.createElement('div');
@@ -155,7 +159,7 @@ const createQuestionBlock = (percents, colors, labels, count, names, questionTit
     surveyChartCanvas.classList.add('survey-chart');
     surveyChartCanvas.classList.add(`survey-chart-${questionNumber}`);
 
-    chartDimensionsOnResize(surveyChartCanvas);
+    chartDimensionsManipulation(surveyChartCanvas);
     createChart(surveyChartCanvasCtx, { labels, percents, colors });
 
     const surveyAnswersContainer = document.createElement('div');
@@ -183,5 +187,6 @@ Chart.defaults.global.tooltips = function() {
     enabled = false;
 }
 
+// Call first item in surveys select
 fillSurveySelect();
 extractQuestionsData(surveySelect[0].value);
