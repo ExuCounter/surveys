@@ -139,7 +139,7 @@ select.form-control {
 .survey-answer__heading-percents {
     background-color: #e7e7e7;
     border-top-right-radius: 0.5rem;
-    border-right: solid 1px #bcbcbc;
+    border-left: solid 1px #bcbcbc;
 }
 
 .survey-answer__heading-choices,
