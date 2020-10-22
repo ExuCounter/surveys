@@ -121,6 +121,26 @@ const data = {
                             "color": "#929292"
                         }
                     ]
+                },
+                {
+                    "questionNumber": 3,
+                    "question": "When a vaccine becomes available in the U.S, will you take it?",
+                    "answers": [{
+                            "percent": 72,
+                            "name": "Yes, immediately.",
+                            "color": "#fd0505"
+                        },
+                        {
+                            "percent": 20,
+                            "name": "No",
+                            "color": "#2081f5"
+                        },
+                        {
+                            "percent": 23,
+                            "name": "Maybe, once I see that it works on others.",
+                            "color": "#929292"
+                        }
+                    ]
                 }
             ]
         }
