@@ -98,13 +98,17 @@ const createChart = (ctx, { labels, percents, colors }) => {
         data: {
             labels,
             datasets: [{
+                fill: false,
                 label: '',
-                data: percents,
+                data: [],
                 backgroundColor: colors,
                 borderWidth: 1
             }]
         },
         options: {
+            animation: {
+                duration: 2000,
+            },
             legend: {
                 display: false
             },
@@ -132,7 +136,13 @@ const createChart = (ctx, { labels, percents, colors }) => {
             }
         }
     }
-    new Chart(ctx, options);
+    const chart = new Chart(ctx, options);
+    setTimeout(() => {
+        chart.data.datasets.forEach((dataset) => {
+            dataset.data = percents;
+        });
+        chart.update();
+    }, 500)
 }
 
 /* CHART DIMENSIONS MANIPULATIONS ( CONDITIONS ) */
